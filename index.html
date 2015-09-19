@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Blank</title>
+	<title>Nikolay Agarkin | Musician</title>
 	<meta charset="UTF-8">
-	<!--meta name="HandheldFriendly" content="True">
+	<meta name="HandheldFriendly" content="True">
 	<meta name="MobileOptimized" content="320">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="format-detection" content="address=no">
 	<meta name="mobile-web-app-capable" content="yes">
@@ -13,7 +13,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"
-	<meta http-equiv="cleartype" content="on">-->
+	<meta http-equiv="cleartype" content="on">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<meta name="Description" content="Описание необходимых мета-тегов." />
 	<!--meta name="msapplication-TileImage" content="assets/images/favicons/ms/144x144.png">
@@ -45,20 +45,122 @@
 				<span class="line"></span>
 			</div>
 		</header>
+		<div id="menu-holder">
+			<div id="langs-holder">
+				<a href="#" class="lang active">
+					<span class="separator"></span>
+					<span class="title" data-title="RU">RU</span>
+				</a>
+				<a href="#" class="lang">
+					<span class="separator"></span>
+					<span class="title" data-title="UA">UA</span>
+				</a>
+			</div>
+			<nav class="menu">
+				<ul>
+					<li>
+						<a href="#" class="active">
+							<span class="title" data-title="Главная">Главная</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Афиша">Афиша</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Музыка">Музыка</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Блог">Блог</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Проекты">Проекты</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Фотографии">Фотографии</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Видео">Видео</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="title" data-title="Контакты">Контакты</span>
+							<span class="separator"></span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="btn-large">
+				<a href="#">Магазин</a>
+			</div>
+		</div>
 		<main id="content">
-			<section class="partition sequence step-1">
-				<div class="parallax-holder photo-holder"></div>
-				<div class="parallax-holder plectrum"></div>
+			<section class="outer sequence step-1">
+				<div class="parallax-holder photo-holder" data-shift="20.7"></div>
+				<div class="parallax-holder" id="plectrum-holder" data-shift="1.9">
+					<img src="build/images/sequence/plectrum.png" alt="plectrum black">
+				</div>
+				<div class="inner info-holder">
+					<span class="upper-title">Автор и исполнитель</span>
+					<span class="separator"></span>
+					<h1>Агаркин Николай</h1>
+					<p>Под сердца ритм бегут года, джаз в душе - счастлив я!
+					Не подобрать точней слова: "Жизнь моя - импровизация"!</p>
+					<div class="btn-large">
+						<a href="#">Читать</a>
+					</div>
+					<div class="social-holder clearfix">
+						<ul>
+							<li>
+								<a href="#" class="fa fa-facebook" title="link to facebook group"></a>
+							</li>
+							<li>
+								<a href="#" class="fa fa-vk" title="link to vkontakte group"></a>
+							</li>
+							<li>
+								<a href="#" class="fa fa-youtube" title="link to youtube channel"></a>
+							</li>
+							<li>
+								<a href="#" class="fa fa-apple" title="link to itunes"></a>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</section>
-			<section class="partition sequence step-2"></section>
-			<section class="partition sequence step-3"></section>
-			<section class="partition sequence step-4"></section>
-			<section class="partition sequence step-5"></section>
-			<section class="partition sequence step-6"></section>
-			<section class="partition sequence step-7"></section>
-			<section class="partition sequence step-8"></section>
+			<section class="outer sequence step-2"></section>
+			<section class="outer sequence step-3"></section>
+			<section class="outer sequence step-4"></section>
+			<section class="outer sequence step-5"></section>
+			<section class="outer sequence step-6"></section>
+			<section class="outer sequence step-7"></section>
+			<section class="outer sequence step-8"></section>
 		</main>
 	</div>
 	<footer id="footer"></footer>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="build/js/lib/vendors.js"></script>
+	<script src="build/js/lib/GradientFlow.js"></script>
+	<script src="build/js/lib/toggleScroll.js"></script>
+	<script src="build/js/controllers/menuController.js"></script>
+	<script src="build/js/lib/parallax.js"></script>
+	<script src="build/js/app/home.js"></script>
 </body>
 </html>

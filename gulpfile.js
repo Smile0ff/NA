@@ -13,9 +13,15 @@ var gulp = require("gulp"),
 	imagemin = require("gulp-imagemin"),
 	pngquant = require("imagemin-pngquant");
 
+gulp.task("js", function(){
+	gulp.src(cfg.jsPath + "**/*.js")
+		.pipe(gulp.dest(cfg.buildPath + "js"));
+});
+
 gulp.task("copyFA", function(){
 	gulp.src("node_modules/font-awesome/less/**.less")
-		.pipe(gulp.dest(cfg.cssPath + "/font-awesome"));
+		.pipe(gulp.dest(cfg.cssPath + "/font-awesome"))
+		.pipe(notify({message: "js bundled", onLast: true}));
 });
 
 gulp.task("css", function(){
@@ -68,8 +74,9 @@ gulp.task("images", function(){
 });
 
 gulp.task("watcher", function(){
+	gulp.watch(cfg.jsPath + "**/*.js", ["js"]);
 	gulp.watch(cfg.cssPath + "**/*.less", ["css"]);
 	gulp.watch(cfg.imagePath + "**/*.*", ["images"]);
 });
 
-gulp.task("default", ["copyFA", "css", "fonts", "images", "watcher"]);
+gulp.task("default", ["js", "copyFA", "css", "fonts", "images", "watcher"]);
