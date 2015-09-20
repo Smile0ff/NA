@@ -26,8 +26,6 @@ var app = app || {};
 
 		scrollY = $(root).scrollTop();
 
-		console.log(scrollY);
-
 		for(i = 0; i < this.el.length; i++){
 			section = $(this.el[i]);
 
