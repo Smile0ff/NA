@@ -1,0 +1,420 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500&subset=latin,cyrillic);
+@import "font-awesome/font-awesome.less";
+@import "settings.less";
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Fonts start								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+h1, h2, h3, h4, p, span, time, small, a{
+	font-family: "Roboto", sans-serif;
+	font-weight: normal;
+	color: #2a2a2a;
+}
+h1, h2, h3, h4{ font-weight: 500; }
+h1{ font-size: 3em; }
+h2{ font-size: 1.5em; }
+h3{ font-size: 1.25em; }
+h4{  font-size: 1.125em; }
+ 
+a, p, time{ font-size: 1em; }
+a{ text-decoration: none; }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	Fonts end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	layout start							  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#page,
+#content,
+.outer,
+.inner,
+.grid,
+.row,
+.col{
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+}
+.inner{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+body{
+	overflow: auto;
+	&.stop-scroll{
+		overflow: hidden;
+	}
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	layout end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	header start							  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#header{
+	width: 100%;
+	height: 120px;
+	background: @bgColor;
+	overflow: hidden;
+	.logo{
+		display: block;
+		width: 60px;
+		height: auto;
+		float: left;
+		margin: 40px 0 0 80px;
+		overflow: hidden;
+	}
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	header end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	menu start								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#toggle-menu{
+	width: 40px;
+	height: 30px;
+	position: fixed;
+	top: 40px;
+	right: 80px;
+	z-index: 20;
+	cursor: pointer;
+	.line{
+		display: block;
+		width: 100%;
+		height: 4px;
+		border-radius: 2px;
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: @grey;
+		overflow: hidden;
+		&:nth-child(2){
+			width: 30px;
+			top: 11px;
+		}
+		&:nth-child(3){
+			width: 20px;
+			top: 22px;
+		}
+		&:before{
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			content: "";
+			background: @green;
+			transition: all .5s @easing;
+			transform: translateX(100%);
+		}
+	}
+	&:hover .line:before{
+		transform: translateX(0%);
+	}
+}
+#page.menu-opened #toggle-menu{
+	.line:before{
+		transform: translateX(0%);
+	}
+}
+#menu-holder{
+	width: 700px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 15;
+	background: @grey;
+	transition: all .5s @easing;
+	transform: translateX(100%);
+	visibility: hidden;
+	overflow: hidden;
+	.menu{
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		overflow: hidden;
+		ul, li{
+			width: 100%;
+			overflow: hidden;
+		}
+		li{
+			height: 40px;
+			margin-top: 20px;
+			text-align: right;
+			position: relative;
+			overflow: hidden;
+		}
+		a{
+			display: inline-block;
+			width: auto;
+			height: 100%;
+			float: right;
+			overflow: hidden;
+			.title{
+				display: inline-block;
+				line-height: 40px;
+				text-transform: uppercase;
+				font-size: 1.5em;
+				color: @bgColor;
+				position: relative;
+				margin-right: 20px;
+				overflow: hidden;
+				&:before{
+					display: block;
+					width: 0%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					color: @green;
+					content: attr(data-title);
+					transition: all .5s @easing;
+					overflow: hidden;
+				}
+			}
+			.separator{
+				display: block;
+				width: 4px;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				right: 0;
+				background: @green;
+				transition: all .5s @easing 0s;
+				overflow: hidden;
+			}
+			&:hover,
+			&.active{
+				.title:before{
+					width: 100%;
+				}
+				.separator{
+					width: 16px;
+					transition: all .5s @easing .25s;
+				}
+			}
+		}
+		li:nth-child(1) a,
+		li:nth-child(5) a{
+			.title:before{
+				color: @green;
+			}
+			.separator{
+				background: @green;
+			}
+		}
+		li:nth-child(2) a,
+		li:nth-child(6) a{
+			.title:before{
+				color: @blue;
+			}
+			.separator{
+				background: @blue;
+			}
+		}
+		li:nth-child(3) a,
+		li:nth-child(7) a{
+			.title:before{
+				color: @red;
+			}
+			.separator{
+				background: @red;
+			}
+		}
+		li:nth-child(4) a,
+		li:nth-child(8) a{
+			.title:before{
+				color: @yellow;
+			}
+			.separator{
+				background: @yellow;
+			}
+		}
+	}
+	.btn-large{
+		position: absolute;
+		right: 80px;
+		bottom: 40px;
+	}
+}
+#page.menu-opened{
+	#menu-holder{
+		transform: translateX(0%);
+		visibility: visible;
+	}
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	menu end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	langs start								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#langs-holder{
+	width: 100%;
+	margin: 40px 0 0 40px;
+	overflow: hidden;
+	.lang{
+		width: 42px;
+		height: 40px;
+		float: left;
+		overflow: hidden;
+		&:last-child{
+			margin-left: 20px;
+		}
+		.separator{
+			display: block;
+			width: 2px;
+			height: 100%;
+			float: left;
+			position: relative;
+			margin-right: 10px;
+			background: @lightGrey;
+			transition: all .5s @easing;
+			overflow: hidden;
+			&:before{
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: @bgColor;
+				content: "";
+				transition: all .5s @easing;
+				transform: translateX(-100%);
+				overflow: hidden;
+			}
+		}
+		.title{
+			display: inline-block;
+			text-transform: uppercase;
+			line-height: 40px;
+			font-size: 1.125em;
+			color: @lightGrey;
+			position: relative;
+			overflow: hidden;
+			&:before{
+				display: block;
+				width: 0%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				line-height: 40px;
+				color: @bgColor;
+				content: attr(data-title);
+				transition: all .5s @easing 0s;
+				overflow: hidden;
+			}
+		}
+		&:hover,
+		&.active{
+			.separator:before{
+				transform: translateX(0%);
+			}
+			.title:before{
+				width: 100%;
+				transition: all .5s @easing .25s;
+			}
+		}
+	}
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	langs end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	buttons start							  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+*[class^="btn-"]{
+	margin: 0 auto;
+	position: relative;
+	backface-visibility: hidden;
+	overflow: hidden;
+	> a,
+	> span{
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		border: 2px solid @green;
+		background: transparent;
+		font-weight: 500;
+		text-align: center;
+		color: @green;
+		text-transform: uppercase;
+		box-sizing: border-box;
+		transition: all .5s @easing;
+		overflow: hidden;
+	}
+	&:before{
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: @green;
+		content: "";
+		transition: all .5s @easing;
+		transform: scaleX(0) skewX(0deg);
+		opacity: 0;
+		overflow: hidden;
+	}
+	&:hover{
+		a, span{
+			color: @bgColor;
+		}
+		&:before{
+			transform: scaleX(1) skewX(45deg);
+			opacity: 1;
+		}
+	}
+}
+
+.btn-large{
+	width: 260px;
+	height: 60px;
+	a, span{
+		font-size: 1.125em;
+		line-height: 56px;
+	}
+}
+.btn-small{
+	width: 180px;
+	height: 40px;
+	a, span{
+		font-size: 1em;
+		line-height: 36px;
+	}
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	buttons end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	forms start							      */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	forms end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	footer start							  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	footer end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

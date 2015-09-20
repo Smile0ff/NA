@@ -15,13 +15,13 @@ var gulp = require("gulp"),
 
 gulp.task("js", function(){
 	gulp.src(cfg.jsPath + "**/*.js")
-		.pipe(gulp.dest(cfg.buildPath + "js"));
+		.pipe(gulp.dest(cfg.buildPath + "js"))
+		.pipe(notify({message: "js bundled", onLast: true}));
 });
 
 gulp.task("copyFA", function(){
 	gulp.src("node_modules/font-awesome/less/**.less")
-		.pipe(gulp.dest(cfg.cssPath + "/font-awesome"))
-		.pipe(notify({message: "js bundled", onLast: true}));
+		.pipe(gulp.dest(cfg.cssPath + "/font-awesome"));
 });
 
 gulp.task("css", function(){
