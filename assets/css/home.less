@@ -202,6 +202,37 @@
 				}
 			}
 		}
+	}
+	&.step-4{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-4.png") no-repeat 170px 100% fixed;
+			background-size: auto 85%;
+		}
+		.parallax-holder.tie-holder{
+			width: 250px;
+			left: 850px;
+			bottom: 350px;
+		}
+		.inner.info-holder{
+			&:after,
+			.separator,
+			.btn-large:before{
+				background: @yellow;
+			}
+			.btn-large{
+				& > a,
+				& > span{
+					color: @yellow;
+					border: 2px solid @yellow;
+				}
+				&:hover{
+					& > a,
+					& > span{
+						color: @bgColor;
+					}
+				}
+			}
+		}
 	}	
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
