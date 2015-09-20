@@ -40,6 +40,7 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .outer.sequence{
 	position: relative;
+	background-image: linear-gradient(120deg, #fdfdfd 0px, #e7e7e7 50%, #fdfdfd 100%);
 	.parallax-holder{
 		position: absolute;
 	}
@@ -48,13 +49,12 @@
 		height: 100%;
 		left: 0;
 		bottom: 0;
-		background: transparent url("@{images}/sequence/slide-1.png") no-repeat 200px 100% fixed;
-		background-size: auto 85%;
+		overflow: hidden;
 	}
-	#plectrum-holder{
+	.parallax-holder.plectrum-holder{
 		width: 25px;
 		height: 25px;
-		position: fixed;
+		position: absolute;
 		top: 70px;
 		left: 890px;
 		z-index: 5;
@@ -99,11 +99,13 @@
 			overflow: hidden;
 		}
 		h1, h2{
-			font-size: 3.75em;
+			font-size: 3em;
 			padding-top: 40px;
 		}
 		p{
-			padding-left: 70%;
+			font-size: 1.25em;
+			font-weight: 300;
+			padding-left: 65%;
 			text-transform: none;
 		}
 		.btn-large{
@@ -137,8 +139,162 @@
 				}
 			}
 		}
+	}
+	&.step-1{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-1.png") no-repeat 210px 100% fixed;
+			background-size: auto 85%;
+		}
+		.inner.info-holder{
+			h1{
+				font-size: 3.75em;
+			}
+		}
+	}
+	&.step-2{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-2.png") no-repeat 125px 100% fixed;
+			background-size: auto 85%;
+		}
+		.inner.info-holder{
+			&:after,
+			.separator,
+			.btn-large:before{
+				background: @blue;
+			}
+			.btn-large{
+				& > a,
+				& > span{
+					color: @blue;
+					border: 2px solid @blue;
+				}
+				&:hover{
+					& > a,
+					& > span{
+						color: @bgColor;
+					}
+				}
+			}
+		}
+	}
+	&.step-3{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-3.png") no-repeat 85px 100% fixed;
+			background-size: auto 85%;
+		}
+		.inner.info-holder{
+			&:after,
+			.separator,
+			.btn-large:before{
+				background: @red;
+			}
+			.btn-large{
+				& > a,
+				& > span{
+					color: @red;
+					border: 2px solid @red;
+				}
+				&:hover{
+					& > a,
+					& > span{
+						color: @bgColor;
+					}
+				}
+			}
+		}
 	}	
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	sequence end							  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	arrow down start						  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+#arrow-down{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 80px;
+	bottom: 40px;
+	z-index: 20;
+	.line,
+	.line-inside{
+		display: block;
+		width: 2px;
+		height: 30px;
+		background: @lightGrey;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		margin-left: -1px;
+		overflow: hidden;
+	}
+	.line-inside{
+		width: 100%;
+		height: 100%;
+		left: 0;
+		margin-left: 0;
+		background: @green;
+		animation: fillUp 3s @easing 1s infinite;
+		transform: translateY(-100%);
+	}
+	.triangle{
+		display: block;
+		width: 10px;
+		height: 8px;
+		position: absolute;
+		top: 30px;
+		left: 50%;
+		margin-left: -5px;
+		overflow: hidden;
+		&:before{
+			display: block;
+			width: 0;
+			content: "";
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 8px solid @lightGrey;
+		}
+		.triangle-inside{
+			display: block;
+			width: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 8px solid @green;
+			animation: fillUp 3s @easing 2s infinite;
+			transform: translateY(-100%);
+		}
+	}
+}
+.sequence.step-2{
+	#arrow-down{
+		.line-inside{
+			background: @blue;
+		}
+		.triangle-inside{
+			border-top: 8px solid @blue;
+		}
+	}
+}
+.sequence.step-3{
+	#arrow-down{
+		.line-inside{
+			background: @red;
+		}
+		.triangle-inside{
+			border-top: 8px solid @red;
+		}
+	}
+}
+@keyframes fillUp{
+	0% { transform: translateY(-100%); }
+	50% { transform: translateY(0%); }
+	100% { transform: translateY(100%); }
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	arrow start end							  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

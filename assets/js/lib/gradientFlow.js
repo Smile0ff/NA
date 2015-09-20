@@ -34,21 +34,13 @@ var app = app || {};
 	function handleMove(e){
 		e.preventDefault();
 
-		var dx, dy, angle, xPerc, yPerc;
-
-		dx = e.pageX - this.resolution.cx;
-		dy = e.pageY - this.resolution.cy;
-		angle = Math.atan2(dx, dy) * 180 / Math.PI;
-
-		xPerc = e.pageX / this.resolution.x * 100;
-		yPerc = e.pageY / this.resolution.y * 100;
+		var percentage = e.pageX / this.resolution.x * 100;
 
 		$.each(this.el, function(index, val){
 			
 			$(this).css({
-				"background-image": "linear-gradient("+ (angle / 2) * -1 +"deg, rgba(145, 147, 150, .1) 0%, #919396 "+ xPerc +"%), linear-gradient("+ angle / 3 +"deg, rgba(145, 147, 150, .1) 0%, #fdfdfd "+ xPerc +"%)"
+				"background-image": "linear-gradient("+ (120 + (percentage / 3)) * -1 +"deg, #fdfdfd 0px, #ebebeb "+ percentage +"%, #fdfdfd 100%), linear-gradient("+ 45 + percentage +"deg, #fdfdfd 0px, #ebebeb "+ percentage +"%, #fdfdfd 100%)"
 			});
-
 		});
 	}
 

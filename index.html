@@ -113,9 +113,9 @@
 			</div>
 		</div>
 		<main id="content">
-			<section class="outer sequence step-1">
+			<section class="outer sequence step-1 active">
 				<div class="parallax-holder photo-holder" data-shift="20.7"></div>
-				<div class="parallax-holder" id="plectrum-holder" data-shift="1.9">
+				<div class="parallax-holder plectrum-holder" data-shift="25.5">
 					<img src="build/images/sequence/plectrum.png" alt="plectrum black">
 				</div>
 				<div class="inner info-holder">
@@ -144,9 +144,55 @@
 						</ul>
 					</div>
 				</div>
+				<div id="arrow-down">
+					<span class="line">
+						<span class="line-inside"></span>
+					</span>
+					<span class="triangle">
+						<span class="triangle-inside"></span>
+					</span>
+				</div>
 			</section>
-			<section class="outer sequence step-2"></section>
-			<section class="outer sequence step-3"></section>
+			<section class="outer sequence step-2">
+				<div class="parallax-holder photo-holder" data-shift="15.4"></div>
+				<div class="inner info-holder">
+					<span class="upper-title">Афиша</span>
+					<span class="separator"></span>
+					<h2>БЛИЖАЙШИЕ ВЫСТУПЛЕНИЯ</h2>
+					<p>Идем с тобою мы вдвоем, нам хорошо, и мы поем! Под ласковым крылом любви пускай для всех цветут сады!</p>
+					<div class="btn-large">
+						<a href="#">Узнать</a>
+					</div>
+				</div>
+				<div id="arrow-down">
+					<span class="line">
+						<span class="line-inside"></span>
+					</span>
+					<span class="triangle">
+						<span class="triangle-inside"></span>
+					</span>
+				</div>
+			</section>
+			<section class="outer sequence step-3">
+				<div class="parallax-holder photo-holder" data-shift="8.4"></div>
+				<div class="inner info-holder">
+					<span class="upper-title">Музыка</span>
+					<span class="separator"></span>
+					<h2>ТО, ЧТО Я ПОЮ</h2>
+					<p>Я допью до дна чистых рек слова, и где бы не был я Сквозь года лети, птицей в небо мчи, Музыка моя!</p>
+					<div class="btn-large">
+						<a href="#">Слушать</a>
+					</div>
+				</div>
+				<div id="arrow-down">
+					<span class="line">
+						<span class="line-inside"></span>
+					</span>
+					<span class="triangle">
+						<span class="triangle-inside"></span>
+					</span>
+				</div>
+			</section>
 			<section class="outer sequence step-4"></section>
 			<section class="outer sequence step-5"></section>
 			<section class="outer sequence step-6"></section>
@@ -156,11 +202,15 @@
 	</div>
 	<footer id="footer"></footer>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+
 	<script src="build/js/lib/vendors.js"></script>
 	<script src="build/js/lib/GradientFlow.js"></script>
 	<script src="build/js/lib/toggleScroll.js"></script>
-	<script src="build/js/controllers/menuController.js"></script>
 	<script src="build/js/lib/parallax.js"></script>
+
+	<script src="build/js/controllers/slideScrollController.js"></script>
+	<script src="build/js/controllers/menuController.js"></script>
+
 	<script src="build/js/app/home.js"></script>
 </body>
 </html>

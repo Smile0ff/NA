@@ -42,8 +42,7 @@ var app = app || {};
 			item = $(this);
 			shift = item.data("shift");
 
-			distance *= shift;
-			item.css({transform: "translateX("+ distance +"px)"});
+			item.css({transform: "translateX("+ distance * shift +"px)"});
 		});
 	}
 
