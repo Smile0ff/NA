@@ -5,6 +5,8 @@ var app = app || {};
 
 	"use strict";
 
+	var screenResolution = new app.ScreenResolution();
+
 	function SlideScrollController(){
 		this.el = $(".sequence");
 		this.initialize.apply(this, arguments);
@@ -12,7 +14,8 @@ var app = app || {};
 	SlideScrollController.prototype = {
 		initialize: initialize,
 		_events: _events,
-		handleScroll: handleScroll
+		handleScroll: handleScroll,
+		checkSlides: checkSlides
 	}
 
 	function initialize(){
@@ -22,16 +25,18 @@ var app = app || {};
 		$(root).on("scroll", $.proxy(this.handleScroll, this));
 	}
 	function handleScroll(e){
-		var section, scrollY, i;
-
-		scrollY = $(root).scrollTop();
+		this.checkSlides($(root).scrollTop());
+	}
+	function checkSlides(scrollY){
+		var slide, offset, topShift, bottomShift, i;
 
 		for(i = 0; i < this.el.length; i++){
-			section = $(this.el[i]);
+			slide = $(this.el[i]);
+			offset = slide.offset();
+			topShift = slide.data("top-shift");
+			bottomShift = slide.data("bottom-shift");
 
-			if(scrollY >= section.offset().top){
-				section.addClass("active").siblings(".sequence").removeClass("active");
-			} 
+			(scrollY >= offset.top - topShift && scrollY <= offset.top + bottomShift) ? slide.addClass("active") : slide.removeClass("active");
 		}
 	}
 

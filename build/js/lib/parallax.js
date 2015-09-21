@@ -4,7 +4,9 @@ var app = app || {};
 
 	"use strict";
 
-	var transform = app.getVendor("transform");
+	var screenResolution = new app.ScreenResolution(),
+		transform = app.getVendor("transform"),
+		transition = app.getVendor("transition");
 
 	function Parallax(){
 		this.el = $(".parallax-holder");
@@ -12,31 +14,22 @@ var app = app || {};
 	}
 	Parallax.prototype = {
 		holders: [],
-		resolution: {},
 		initialize: initialize,
 		_events: _events,
-		setResolution: setResolution,
 		handleMove: handleMove
 	}
 
 	function initialize(){
 		this.holders = $(".sequence");
 		this._events();
-
-		this.setResolution();
 	}
 	function _events(){
-		$(root).on("resize", $.proxy(this.setResolution, this));
 		this.holders.on("mousemove", $.proxy(this.handleMove, this));
-	}
-	function setResolution(e){
-		this.resolution.x = root.innerWidth;
-		this.resolution.y = root.innerHeight;
 	}
 	function handleMove(e){
 		var item, shift, distance;
 
-		distance = e.pageX / this.resolution.x;
+		distance = e.pageX / screenResolution.resolution.w;
 
 		$.each(this.el, function(){
 			item = $(this);

@@ -43,21 +43,14 @@
 	background-image: linear-gradient(120deg, #fdfdfd 0px, #e7e7e7 50%, #fdfdfd 100%);
 	.parallax-holder{
 		position: absolute;
+		z-index: 5;
 	}
 	.parallax-holder.photo-holder{
 		width: 100%;
 		height: 100%;
 		left: 0;
 		bottom: 0;
-		overflow: hidden;
-	}
-	.parallax-holder.plectrum-holder{
-		width: 25px;
-		height: 25px;
-		position: absolute;
-		top: 70px;
-		left: 890px;
-		z-index: 5;
+		z-index: 0;
 		overflow: hidden;
 	}
 	.inner.info-holder{
@@ -109,7 +102,7 @@
 			text-transform: none;
 		}
 		.btn-large{
-			margin: 60px 0 40px;
+			margin: 60px 0 0px;
 			float: right;
 		}
 		.social-holder{
@@ -149,9 +142,23 @@
 			h1{
 				font-size: 3.75em;
 			}
+			.btn-large{
+				margin: 60px 0 40px;
+				float: right;
+			}
+		}
+		.parallax-holder.plectrum-holder{
+			width: 25px;
+			height: 25px;
+			position: absolute;
+			top: 70px;
+			left: 890px;
+			z-index: 5;
+			overflow: hidden;
 		}
 	}
-	&.step-2{
+	&.step-2,
+	&.step-6{
 		.parallax-holder.photo-holder{
 			background: transparent url("@{images}/sequence/slide-2.png") no-repeat 125px 100% fixed;
 			background-size: auto 85%;
@@ -177,7 +184,8 @@
 			}
 		}
 	}
-	&.step-3{
+	&.step-3,
+	&.step-7{
 		.parallax-holder.photo-holder{
 			background: transparent url("@{images}/sequence/slide-3.png") no-repeat 85px 100% fixed;
 			background-size: auto 85%;
@@ -203,15 +211,25 @@
 			}
 		}
 	}
-	&.step-4{
+	&.step-4,
+	&.step-8{
 		.parallax-holder.photo-holder{
 			background: transparent url("@{images}/sequence/slide-4.png") no-repeat 170px 100% fixed;
 			background-size: auto 85%;
 		}
 		.parallax-holder.tie-holder{
-			width: 250px;
+			width: 200px;
 			left: 850px;
 			bottom: 350px;
+			& > .tie{
+				width: 100%;
+				top: 0;
+				left: 0;
+				z-index: 5;
+				transition: all .15s @easing;
+				transform: translateY(-50px);
+				opacity: 0;
+			}
 		}
 		.inner.info-holder{
 			&:after,
@@ -233,7 +251,90 @@
 				}
 			}
 		}
-	}	
+		&.active{
+			.parallax-holder.tie-holder{
+				& > .tie{
+					transition: all .75s @easing;
+					transform: translateY(0px);
+					opacity: 1;
+				}
+			}
+		}
+	}
+	&.step-5{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-5.png") no-repeat 225px 100% fixed;
+			background-size: auto 85%;
+		}
+	}
+	&.step-6{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-6.png") no-repeat 160px 100% fixed;
+			background-size: auto 85%;
+		}
+		.parallax-holder.guitar-holder{
+			width: 375px;
+			height: auto;
+			left: 850px;
+			bottom: 0;
+			& > .guitar{
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 5;
+				transition: all 0s @easing;
+				transform: translateX(30%) translateY(-60%);
+				opacity: 0;
+			}
+		}
+		&.active{
+			.parallax-holder.guitar-holder{
+				& > .guitar{
+					width: 100%;
+					transition: all .75s @easing;
+					transform: translateX(0%)  translateY(-90%);
+					opacity: 1;
+				}
+			}
+		}
+	}
+	&.step-7{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-7.png") no-repeat 160px 100% fixed;
+			background-size: auto 85%;
+		}
+		.parallax-holder.plectrum-low-holder{
+			width: 25px;
+			top: 150px;
+			left: 1000px;
+			& > .plectrum{
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 5;
+				transition: all .15s @easing;
+				transform: translateX(15%) translateY(-300px);
+				opacity: 0;
+			}
+		}
+		&.active{
+			.parallax-holder.plectrum-low-holder{
+				& > .plectrum{
+					transition: all .75s @easing;
+					transform: translateX(0%) translateY(0px);
+					opacity: 1;
+				}
+			}
+		}
+	}
+	&.step-8{
+		.parallax-holder.photo-holder{
+			background: transparent url("@{images}/sequence/slide-8.png") no-repeat 115px 100% fixed;
+			background-size: auto 85%;
+		}
+	}
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	sequence end							  */
@@ -242,13 +343,14 @@
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	arrow down start						  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-#arrow-down{
+.sequence .arrow-down{
 	width: 40px;
 	height: 40px;
 	position: absolute;
 	right: 80px;
 	bottom: 40px;
 	z-index: 10;
+	cursor: pointer;
 	.line,
 	.line-inside{
 		display: block;
@@ -300,9 +402,13 @@
 			transform: translateY(-100%);
 		}
 	}
+	&.to-top{
+		transform: rotate(180deg);
+	}
 }
-.sequence.step-2{
-	#arrow-down{
+.sequence.step-2,
+.sequence.step-6{
+	.arrow-down{
 		.line-inside{
 			background: @blue;
 		}
@@ -311,13 +417,25 @@
 		}
 	}
 }
-.sequence.step-3{
-	#arrow-down{
+.sequence.step-3,
+.sequence.step-7{
+	.arrow-down{
 		.line-inside{
 			background: @red;
 		}
 		.triangle-inside{
 			border-top: 8px solid @red;
+		}
+	}
+}
+.sequence.step-4,
+.sequence.step-8{
+	.arrow-down{
+		.line-inside{
+			background: @yellow;
+		}
+		.triangle-inside{
+			border-top: 8px solid @yellow;
 		}
 	}
 }
@@ -327,5 +445,143 @@
 	100% { transform: translateY(100%); }
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*	arrow start end							  */
+/*	arrow end								  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	adaptive desktops & laptops start 		  */
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+@media only screen and(max-width: 1680px){
+
+	.outer.sequence{
+		.inner.info-holder{
+			p{
+				padding-left: 55%;
+			}
+		}
+		&.step-1{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-1.png") no-repeat 120px 100% fixed;
+				background-size: auto 80%;
+			}
+			.parallax-holder.plectrum-holder{
+				top: 100px;
+				left: 800px;
+			}
+		}
+		&.step-2,
+		&.step-6{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-2.png") no-repeat 55px 100% fixed;
+				background-size: auto 80%;
+			}
+		}
+		&.step-3,
+		&.step-7{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-3.png") no-repeat 85px 100% fixed;
+				background-size: auto 80%;
+			}
+		}
+		&.step-4,
+		&.step-8{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-4.png") no-repeat 120px 100% fixed;
+				background-size: auto 80%;
+			}
+			.parallax-holder.tie-holder{
+				width: 180px;
+				left: 730px;
+				bottom: 250px;
+			}
+		}
+		&.step-5{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-5.png") no-repeat 225px 100% fixed;
+				background-size: auto 80%;
+			}
+		}
+		&.step-6{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-6.png") no-repeat 80px 100% fixed;
+				background-size: auto 80%;
+			}
+			.parallax-holder.guitar-holder{
+				width: 345px;
+				left: 730px;
+			}
+		}
+		&.step-7{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-7.png") no-repeat 60px 100% fixed;
+				background-size: auto 80%;
+			}
+			.parallax-holder.plectrum-low-holder{
+				top: 180px;
+				left: 820px;
+			}
+		}
+		&.step-8{
+			.parallax-holder.photo-holder{
+				background: transparent url("@{images}/sequence/slide-8.png") no-repeat 65px 100% fixed;
+				background-size: auto 80%;
+			}
+		}
+	}
+}
+
+@media only screen and(max-width: 1440px){
+	
+	.outer.sequence{
+		.inner.info-holder{
+			.upper-title{
+				font-size: 1em;
+			}
+			h1, h2{
+				font-size: 2.5em;
+			}
+			p{
+				font-size: 1em;
+				padding-left: 60%;
+			}
+			.social-holder{
+				& > ul{
+					width: 220px;
+				}
+			}
+		}
+		&.step-1{
+			.inner.info-holder{
+				h1{
+					font-size: 3.25em;
+				}
+			}
+			.parallax-holder.plectrum-holder{
+				width: 20px;
+				height: 20px;
+				left: 740px;
+			}
+		}
+		&.step-6{
+			.parallax-holder.guitar-holder{
+				left: 680px;
+			}
+		}
+		&.step-7{
+			.parallax-holder.plectrum-low-holder{
+				width: 20px;
+			}
+		}
+	}
+}
+
+@media only screen and(max-width: 1280px){
+	
+	
+
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+/*	adaptive desktops & laptops end 		  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/

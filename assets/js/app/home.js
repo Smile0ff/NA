@@ -5,6 +5,6 @@ $(function(){
 	new app.SlideScrollController();
 	new app.MenuController();
 	new app.Parallax();
-	new app.GradientFlow();
-
+	//new app.GradientFlow();
+	new app.ArrowAutoScroll();
 });

@@ -4,37 +4,28 @@ var app = app || {};
 
 	"use strcit";
 
+	var screenResolution = new app.ScreenResolution();
+
 	function GradientFlow(){
 		this.el = $(".sequence");
 		this.initialize.apply(this, arguments);
 	}
 	GradientFlow.prototype = {
-		resolution: {},
 		initialize: initialize,
 		_events: _events,
-		setResolution: setResolution,
 		handleMove: handleMove
 	}
 
 	function initialize(){
 		this._events();
-		this.setResolution();
 	}
 	function _events(){
-		$(root).on("resize", $.proxy(this.setResolution, this));
 		this.el.on("mousemove", $.proxy(this.handleMove, this));
-	}
-	function setResolution(e){
-		this.resolution.x = root.innerWidth;
-		this.resolution.y = root.innerHeight;
-
-		this.resolution.cx = this.resolution.x / 2;
-		this.resolution.cy = this.resolution.y / 2;
 	}
 	function handleMove(e){
 		e.preventDefault();
 
-		var percentage = e.pageX / this.resolution.x * 100;
+		var percentage = e.pageX / screenResolution.resolution.w * 100;
 
 		$.each(this.el, function(index, val){
 			
