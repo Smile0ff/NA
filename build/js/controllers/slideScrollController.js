@@ -35,6 +35,8 @@ var app = app || {};
 		this._body = $("html, body");
 		this.arrows = $(".arrow-down");
 
+		$(root).scrollTop(0);
+
 		this._events();
 	}
 	function _events(){
@@ -94,6 +96,7 @@ var app = app || {};
 			currentSlide = self.el.eq(index),
 			positionY = toTop ? 0 : currentSlide.offset().top;
 
+		if(toTop) this.current = 0;
 		this.isScrolled = true;
 
 		this._body.stop().animate({scrollTop: positionY + "px"}, 500, function(){
