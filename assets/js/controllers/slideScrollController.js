@@ -40,8 +40,10 @@ var app = app || {};
 		this._events();
 	}
 	function _events(){
-		$(root).on("DOMMouseScroll mousewheel", $.proxy(this.handleScroll, this))
-				.on("keydown", $.proxy(this.handleKey, this));
+		if(!app.isMobile()){
+			$(root).on("DOMMouseScroll mousewheel", $.proxy(this.handleScroll, this))
+					.on("keydown", $.proxy(this.handleKey, this));
+		}
 
 		this.arrows.on("click", $.proxy(this.handleArrow, this));
 	}
