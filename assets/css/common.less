@@ -46,6 +46,10 @@ body{
 		overflow: hidden;
 	}
 }
+
+#landscape-holder{
+	display: none;
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /*	layout end								  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -421,68 +425,128 @@ body{
 
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*	adaptive desktops & laptops start 		  */
+/*	adaptive start 		 					  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-@media only screen and(max-width: 1440px){
+@media only screen and(max-width: 1024px){
 
 	#menu-holder{
-		width: 600px;
+		width: 100%;
 		.menu{
-			transform: translateY(-55%);
+			height: ~"calc(100% - 240px)";
+			padding-right: 20px;
+			position: relative;
+			top: 0;
+			left: 0;
+			margin-top: 40px;
+			transform: translateY(0%);
+			overflow: auto;
+			li{
+				text-align: center;
+			}
 			a{
+				display: inline-block;
+				width: auto;
+				height: 100%;
+				float: none;
+				overflow: hidden;
 				.title{
-					font-size: 1.25em;
+					margin-right: 0;
+				}
+				.separator{
+					width: 60px;
+					height: 2px;
+					top: auto;
+					right: auto;
+					left: 50%;
+					bottom: 0;
+					margin-left: -30px;
+				}
+				&:hover,
+				&.active{
+					.separator{
+						width: 60px;
+						height: 4px;
+						transition: all .5s @easing .25s;
+					}
 				}
 			}
 		}
+		.btn-large{
+			left: 50%;
+			right: auto;
+			margin-left: -130px;
+		}
+	}
+
+}
+
+@media only screen and(max-width: 800px){
+
+	#header{
+		.logo{
+			width: 40px;
+			margin: 20px 0 0 20px;
+		}
 	}
 	
+	#toggle-menu{
+		top: 20px;
+		right: 20px;
+	}
 
-	*[class^="btn-"]{
-		margin: 0 auto;
-		position: relative;
-		backface-visibility: hidden;
-		overflow: hidden;
-		> a,
-		> span{
-			display: block;
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			z-index: 10;
-			border: 2px solid @green;
-			background: transparent;
-			font-weight: 500;
-			text-align: center;
-			color: @green;
-			text-transform: uppercase;
-			box-sizing: border-box;
-			transition: all .5s @easing;
-			overflow: hidden;
-		}
-		&:before{
-			display: block;
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			top: 0;
-			left: 0;
-			background: @green;
-			content: "";
-			transition: all .5s @easing;
-			transform: scaleX(0) skewX(0deg);
-			opacity: 0;
-			overflow: hidden;
-		}
-		&:hover{
-			a, span{
-				color: @bgColor;
+	#menu-holder{
+		.menu{
+			height: ~"calc(100% - 170px)";
+			margin-top: 0;
+			li{
+				text-align: center;
 			}
-			&:before{
-				transform: scaleX(1) skewX(45deg);
-				opacity: 1;
+			a{
+				.title{
+					font-size: 1em;
+				}
+			}
+		}
+		.btn-large{
+			width: 220px;
+			height: 50px;
+			left: 50%;
+			right: auto;
+			bottom: 20px;
+			margin-left: -110px;
+			& > a,
+			& > span{
+				line-height: 46px;
+				font-size: .875em;
+			}
+		}
+	}
+
+	#langs-holder{
+		width: 100%;
+		margin: 20px 0 0 20px;
+		overflow: hidden;
+		.lang{
+			width: 40px;
+			position: relative;
+			text-align: center;
+			&:last-child{
+				margin-left: 20px;
+			}
+			.separator{
+				width: 100%;
+				height: 2px;
+				float: none;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				margin-right: 0;
+			}
+			.title{
+				display: inline-block;
+				text-transform: uppercase;
+				line-height: 40px;
+				font-size: 1em;
 			}
 		}
 	}
@@ -495,8 +559,94 @@ body{
 			line-height: 46px;
 		}
 	}
+	.btn-small{
+		width: 180px;
+		height: 40px;
+		a, span{
+			font-size: .875em;
+			line-height: 36px;
+		}
+	}
+
+}
+
+
+@media only screen and(max-width: 768px) and(orientation: landscape){
+
+	#header,
+	#toggle-menu,
+	#menu,
+	#content > .outer.sequence{
+		display: none;
+	}
+	
+	#content{
+		position: relative;
+		overflow: hidden;
+	}
+	#landscape-holder{
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		& > .inner{
+			max-width: 100%;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+			overflow: visible;
+		}
+		.info-holder{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			position: relative;
+			.fa{
+				display: block;
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size: 6.25em;
+				color: @lightGrey;
+				text-align: center;
+				line-height: 100px;
+				transform: rotate(90deg);
+				transform-origin: 50% 100%;
+				animation: landscape 5s @easing 0s infinite;
+			}
+		}
+	}
+
+	@keyframes landscape{
+		0% {
+			transform: rotate(90deg);
+			color: @lightGrey;
+			opacity: 0;
+		}
+		30% { 
+			transform: rotate(0deg);
+			color: @green;
+			opacity: 1;
+		}
+		60% { 
+			transform: rotate(0deg);
+			color: @green;
+			opacity: 1;
+		}
+		100% { 
+			transform: rotate(-90deg);
+			color: @lightGrey;
+			opacity: 0;
+		}
+	}
 
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-/*	adaptive desktops & laptops end 		  */
+/*	adaptive end 		 					  */
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
